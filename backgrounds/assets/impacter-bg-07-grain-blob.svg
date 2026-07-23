@@ -1,0 +1,42 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g7-blob" x1="0.15" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#FF9B7E"/>
+      <stop offset="0.45" stop-color="#FF6F61"/>
+      <stop offset="1" stop-color="#E8503F"/>
+    </linearGradient>
+    <radialGradient id="g7-navyglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0E2A4E" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0E2A4E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g7-soft" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFC9B0" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#FFC9B0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="g7-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="g7-clip">
+      <path d="M 430 60
+               C 610 -10, 900 10, 1020 130
+               C 1120 230, 1040 330, 1130 400
+               C 1230 475, 1300 560, 1210 650
+               C 1100 760, 880 720, 700 690
+               C 560 668, 420 730, 330 640
+               C 240 550, 330 460, 400 390
+               C 470 320, 300 280, 280 190
+               C 262 105, 330 100, 430 60 Z"/>
+    </clipPath>
+  </defs>
+  <rect width="1440" height="720" fill="#FCF9F5"/>
+  <ellipse cx="180" cy="620" rx="480" ry="320" fill="url(#g7-soft)"/>
+  <g clip-path="url(#g7-clip)">
+    <rect width="1440" height="720" fill="url(#g7-blob)"/>
+    <ellipse cx="1150" cy="640" rx="560" ry="380" fill="url(#g7-navyglow)"/>
+    <ellipse cx="420" cy="120" rx="420" ry="300" fill="#FFC9B0" opacity="0.45"/>
+    <rect width="1440" height="720" filter="url(#g7-grain)" opacity="0.28" style="mix-blend-mode:soft-light"/>
+    <rect width="1440" height="720" filter="url(#g7-grain)" opacity="0.10" style="mix-blend-mode:overlay"/>
+  </g>
+  <rect width="1440" height="720" filter="url(#g7-grain)" opacity="0.03" style="mix-blend-mode:multiply"/>
+</svg>

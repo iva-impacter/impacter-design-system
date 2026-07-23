@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="h8-base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8604A"/>
+      <stop offset="1" stop-color="#D4503C"/>
+    </linearGradient>
+    <radialGradient id="h8-vign" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.55" stop-color="#0E2A4E" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0E2A4E" stop-opacity="0.28"/>
+    </radialGradient>
+    <radialGradient id="h8-spark" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFE3D6" stop-opacity="0.9"/>
+      <stop offset="0.5" stop-color="#FFB199" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FFB199" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="h8-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <g id="h8-pipes" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M -60 120 H 280 Q 340 120 340 180 V 400 Q 340 460 400 460 H 620"/>
+      <path d="M 220 -60 V 20 Q 220 80 160 80 H -60"/>
+      <path d="M 500 -60 V 120 Q 500 180 560 180 H 780 Q 840 180 840 240 V 340"/>
+      <path d="M 840 340 Q 840 400 900 400 H 1120 Q 1180 400 1180 460 V 640"/>
+      <path d="M 1180 640 Q 1180 700 1240 700 H 1500"/>
+      <path d="M 1020 -60 V 60 Q 1020 120 1080 120 H 1320 Q 1380 120 1380 180 V 260"/>
+      <path d="M 1380 260 Q 1380 320 1440 320 H 1500"/>
+      <path d="M -60 600 H 120 Q 180 600 180 660 V 780"/>
+      <path d="M 400 780 V 660 Q 400 600 460 600 H 660 Q 720 600 720 540 V 480"/>
+      <path d="M 620 460 Q 680 460 680 520 V 780" />
+      <path d="M 1500 500 H 1360 Q 1300 500 1300 440 V 300"/>
+    </g>
+  </defs>
+  <rect width="1440" height="720" fill="url(#h8-base)"/>
+  <use href="#h8-pipes" stroke="#B93F2D" stroke-width="46" transform="translate(0 5)" opacity="0.55"/>
+  <use href="#h8-pipes" stroke="#F58367" stroke-width="46" transform="translate(0 -4)" opacity="0.85"/>
+  <use href="#h8-pipes" stroke="#DE5843" stroke-width="46"/>
+  <ellipse cx="340" cy="180" rx="60" ry="60" fill="url(#h8-spark)"/>
+  <ellipse cx="840" cy="240" rx="50" ry="50" fill="url(#h8-spark)" opacity="0.8"/>
+  <ellipse cx="1180" cy="460" rx="55" ry="55" fill="url(#h8-spark)" opacity="0.7"/>
+  <ellipse cx="680" cy="560" rx="45" ry="45" fill="url(#h8-spark)" opacity="0.6"/>
+  <rect width="1440" height="720" fill="url(#h8-vign)"/>
+  <rect width="1440" height="720" filter="url(#h8-grain)" opacity="0.08" style="mix-blend-mode:soft-light"/>
+</svg>

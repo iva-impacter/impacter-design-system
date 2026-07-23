@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impacter Pathway — Background &amp; Motion Library</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #FBF7F2; color: #14273F; }
+  a { text-decoration: none; color: inherit; }
+
+  .hero {
+    position: relative; padding: 110px 32px 90px; text-align: center; overflow: hidden;
+    background-image: url('assets/impacter-bg-01-dark-aurora.svg');
+    background-size: cover; background-position: center;
+  }
+  .hero .tag {
+    display: inline-block; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    padding: 8px 18px; border-radius: 100px; margin-bottom: 24px; font-weight: 600;
+    color: #FFA895; background: rgba(255,111,97,.14); border: 1px solid rgba(255,111,97,.4);
+  }
+  .hero h1 { font-size: clamp(34px, 4.5vw, 56px); font-weight: 600; letter-spacing: -.02em; line-height: 1.1; color: #FDF9F5; max-width: 760px; margin: 0 auto 18px; }
+  .hero p { font-size: 17px; line-height: 1.6; color: #D5DFEC; max-width: 540px; margin: 0 auto; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 70px 32px 90px; }
+  h2 { font-size: 26px; font-weight: 600; letter-spacing: -.01em; margin-bottom: 8px; }
+  .sub { color: #55606E; font-size: 15px; margin-bottom: 34px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 22px; margin-bottom: 80px; }
+  .card {
+    position: relative; border-radius: 20px; overflow: hidden; height: 240px;
+    display: flex; align-items: flex-end;
+    background-size: cover; background-position: center;
+    transition: transform .25s ease, box-shadow .25s ease;
+    box-shadow: 0 2px 10px rgba(14,42,78,.08);
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(14,42,78,.18); }
+  .card .info { position: relative; z-index: 2; padding: 20px 22px; width: 100%; }
+  .card .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(5,15,32,.72) 100%); }
+  .card h3 { color: #FDF9F5; font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+  .card p { color: #D5DFEC; font-size: 13.5px; line-height: 1.45; }
+  .card .count {
+    position: absolute; top: 16px; left: 18px; z-index: 2;
+    font-size: 12px; font-weight: 600; color: #fff;
+    background: rgba(0,0,0,.45); padding: 5px 12px; border-radius: 100px; backdrop-filter: blur(4px);
+  }
+  .card .badge {
+    position: absolute; top: 16px; right: 18px; z-index: 2;
+    font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: #FFF6F1; background: #FF6F61; padding: 5px 12px; border-radius: 100px;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
+  .thumb { border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 2px 8px rgba(14,42,78,.08); transition: transform .2s ease; }
+  .thumb:hover { transform: translateY(-3px); }
+  .thumb img { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; }
+  .thumb span { display: block; font-size: 12.5px; font-weight: 600; color: #3B4A61; padding: 10px 14px; }
+
+  footer { text-align: center; padding: 40px; color: #8B94A1; font-size: 13px; border-top: 1px solid rgba(14,42,78,.08); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="tag">Impacter Pathway · Design System</span>
+  <h1>Background &amp; Motion Library</h1>
+  <p>27 brand backgrounds — dark navy to coral. Static gradients and textures, plus interactive and 3D animations that respond to the cursor.</p>
+</header>
+
+<main class="wrap">
+  <h2>Collections</h2>
+  <p class="sub">Click a collection to view it full-screen. Interactive pages respond to your mouse.</p>
+  <div class="cards">
+    <a class="card" href="static-gallery.html" style="background-image:url('assets/impacter-bg-02-light-mesh.svg')">
+      <span class="count">14 backgrounds</span>
+      <span class="scrim"></span>
+      <span class="info"><h3>Static Gradients &amp; Textures</h3><p>Auroras, meshes, grain blends, contour lines, pipes, waves — coral and navy versions.</p></span>
+    </a>
+    <a class="card" href="interactive.html" style="background-image:url('assets/impacter-bg-01-dark-aurora.svg')">
+      <span class="count">4 animations</span><span class="badge">Interactive</span>
+      <span class="scrim"></span>
+      <span class="info"><h3>Interactive &amp; 3D</h3><p>Cursor-following spotlight, liquid metaballs, 3D dot terrain, tilt parallax scene.</p></span>
+    </a>
+    <a class="card" href="geometric.html" style="background-image:url('assets/impacter-bg-12-pipe-pattern-navy.svg')">
+      <span class="count">4 animations</span><span class="badge">Interactive</span>
+      <span class="scrim"></span>
+      <span class="info"><h3>Geometric</h3><p>Magnetic dot grid, glowing tile wall, isometric cubes, floating shape constellation.</p></span>
+    </a>
+    <a class="card" href="subtle.html" style="background-image:url('assets/impacter-bg-10-blur-grain.svg')">
+      <span class="count">4 animations</span><span class="badge">Interactive</span>
+      <span class="scrim"></span>
+      <span class="info"><h3>Subtle</h3><p>Whisper glow, quiet dots, breathing lines, slow tide — calm, low-motion responses.</p></span>
+    </a>
+    <a class="card" href="voice-hero.html" style="background-image:url('assets/impacter-bg-27-voice-hero.svg')">
+      <span class="count">1 hero</span><span class="badge">Interactive</span>
+      <span class="scrim"></span>
+      <span class="info"><h3>Voice Intelligence Hero</h3><p>Warm hero with speech-like voice signals along the bottom that respond to the cursor.</p></span>
+    </a>
+  </div>
+
+  <h2>Static SVG assets</h2>
+  <p class="sub">Scalable, drop-in files — click to open any at full size. All live in <code>backgrounds/assets/</code>.</p>
+  <div class="grid">
+    <a class="thumb" href="assets/impacter-bg-01-dark-aurora.svg"><img src="assets/impacter-bg-01-dark-aurora.svg" alt=""><span>01 · Dark Aurora</span></a>
+    <a class="thumb" href="assets/impacter-bg-02-light-mesh.svg"><img src="assets/impacter-bg-02-light-mesh.svg" alt=""><span>02 · Light Mesh</span></a>
+    <a class="thumb" href="assets/impacter-bg-03-grain-blend.svg"><img src="assets/impacter-bg-03-grain-blend.svg" alt=""><span>03 · Grain Blend</span></a>
+    <a class="thumb" href="assets/impacter-bg-04-contour-lines.svg"><img src="assets/impacter-bg-04-contour-lines.svg" alt=""><span>04 · Contour Lines</span></a>
+    <a class="thumb" href="assets/impacter-bg-05-bold-coral.svg"><img src="assets/impacter-bg-05-bold-coral.svg" alt=""><span>05 · Bold Coral</span></a>
+    <a class="thumb" href="assets/impacter-bg-06-coral-horizon.svg"><img src="assets/impacter-bg-06-coral-horizon.svg" alt=""><span>06 · Coral Horizon</span></a>
+    <a class="thumb" href="assets/impacter-bg-07-grain-blob.svg"><img src="assets/impacter-bg-07-grain-blob.svg" alt=""><span>07 · Grain Blob</span></a>
+    <a class="thumb" href="assets/impacter-bg-08-pipe-pattern.svg"><img src="assets/impacter-bg-08-pipe-pattern.svg" alt=""><span>08 · Pipe Pattern</span></a>
+    <a class="thumb" href="assets/impacter-bg-09-soft-waves.svg"><img src="assets/impacter-bg-09-soft-waves.svg" alt=""><span>09 · Soft Waves</span></a>
+    <a class="thumb" href="assets/impacter-bg-10-blur-grain.svg"><img src="assets/impacter-bg-10-blur-grain.svg" alt=""><span>10 · Blur Grain</span></a>
+    <a class="thumb" href="assets/impacter-bg-11-grain-blob-navy.svg"><img src="assets/impacter-bg-11-grain-blob-navy.svg" alt=""><span>11 · Grain Blob, Navy</span></a>
+    <a class="thumb" href="assets/impacter-bg-12-pipe-pattern-navy.svg"><img src="assets/impacter-bg-12-pipe-pattern-navy.svg" alt=""><span>12 · Pipe Pattern, Navy</span></a>
+    <a class="thumb" href="assets/impacter-bg-13-soft-waves-navy.svg"><img src="assets/impacter-bg-13-soft-waves-navy.svg" alt=""><span>13 · Soft Waves, Navy</span></a>
+    <a class="thumb" href="assets/impacter-bg-14-blur-grain-navy.svg"><img src="assets/impacter-bg-14-blur-grain-navy.svg" alt=""><span>14 · Blur Grain, Navy</span></a>
+    <a class="thumb" href="assets/impacter-bg-27-voice-hero.svg"><img src="assets/impacter-bg-27-voice-hero.svg" alt=""><span>27 · Voice Hero (static)</span></a>
+  </div>
+</main>
+
+<footer>Impacter Pathway · Brand backgrounds — dark navy #0E2A4E → coral #FF6F61</footer>
+
+</body>
+</html>

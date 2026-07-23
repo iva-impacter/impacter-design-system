@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impacter Pathway — Subtle Interactive Backgrounds</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #FBF7F2; }
+  .section {
+    position: relative; height: 100vh; min-height: 600px;
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .section canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .content { position: relative; z-index: 5; max-width: 760px; padding: 0 32px; pointer-events: none; }
+  .content a { pointer-events: auto; }
+  .tag {
+    display: inline-block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    padding: 7px 16px; border-radius: 100px; margin-bottom: 22px; font-weight: 600;
+  }
+  h1 { font-size: clamp(34px, 4.6vw, 58px); font-weight: 600; letter-spacing: -.02em; line-height: 1.12; margin-bottom: 18px; }
+  p { font-size: 17px; line-height: 1.6; max-width: 560px; margin: 0 auto 30px; }
+  .btn { display: inline-block; padding: 13px 28px; border-radius: 100px; font-size: 15px; font-weight: 600; text-decoration: none; }
+  .label {
+    position: absolute; top: 20px; left: 24px; z-index: 6;
+    font-size: 12px; font-weight: 600; letter-spacing: .08em;
+    padding: 6px 14px; border-radius: 6px;
+    background: rgba(0,0,0,.5); color: #fff; backdrop-filter: blur(4px);
+  }
+  .grain {
+    position: absolute; inset: 0; z-index: 4; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply; opacity: .04;
+  }
+  .light-s { background: #FBF7F2; }
+  .light-s h1 { color: #0E2A4E; } .light-s p { color: #3B4A61; }
+  .light-s .tag { background: rgba(255,111,97,.1); color: #E85744; border: 1px solid rgba(255,111,97,.3); }
+  .light-s .btn { background: #0E2A4E; color: #FDF9F5; }
+  .dark-s { background: linear-gradient(165deg, #0F2846 0%, #081A33 60%, #071528 100%); }
+  .dark-s h1 { color: #FDF9F5; } .dark-s p { color: #D5DFEC; }
+  .dark-s .tag { background: rgba(255,111,97,.12); color: #FFA895; border: 1px solid rgba(255,111,97,.3); }
+  .dark-s .btn { background: #FF6F61; color: #FFF6F1; }
+  .dark-s .grain { mix-blend-mode: overlay; opacity: .06; }
+  #whisper .halo {
+    position: absolute; left: 0; top: 0; width: 1100px; height: 1100px;
+    margin: -550px 0 0 -550px; border-radius: 50%; pointer-events: none; will-change: transform;
+    background: radial-gradient(circle, rgba(255,122,92,.10) 0%, rgba(255,155,126,.05) 45%, transparent 70%);
+  }
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:20px;right:24px;z-index:99;font-family:Helvetica Neue,Arial,sans-serif;font-size:13px;font-weight:600;text-decoration:none;padding:8px 18px;border-radius:100px;background:rgba(0,0,0,.55);color:#fff;backdrop-filter:blur(4px)">&larr; All collections</a>
+
+<!-- 23 · WHISPER GLOW -->
+<section class="section light-s" id="whisper">
+  <span class="label">23 · WHISPER — a faint warmth drifts after the cursor</span>
+  <div class="halo"></div>
+  <div class="grain"></div>
+  <div class="content">
+    <span class="tag">Impacter Pathway</span>
+    <h1>Warmth you sense more than see</h1>
+    <p>A very soft coral halo trails far behind the cursor at a fraction of its speed. Most visitors will only feel that the page is warm where they are.</p>
+    <a class="btn" href="#">Get started</a>
+  </div>
+</section>
+
+<!-- 24 · QUIET DOTS -->
+<section class="section light-s" id="quietdots">
+  <span class="label">24 · QUIET DOTS — a still grid that blushes, nothing moves</span>
+  <canvas></canvas>
+  <div class="grain"></div>
+  <div class="content">
+    <span class="tag">How it works</span>
+    <h1>Stillness, with a hint of response</h1>
+    <p>A fine dot grid that never moves — dots near the cursor simply warm from pale navy to coral and cool back down slowly.</p>
+    <a class="btn" href="#">Learn more</a>
+  </div>
+</section>
+
+<!-- 25 · BREATHING LINES -->
+<section class="section dark-s" id="lines">
+  <span class="label">25 · BREATHING LINES — contours bow a few pixels, no more</span>
+  <canvas></canvas>
+  <div class="grain"></div>
+  <div class="content">
+    <span class="tag">Our pathways</span>
+    <h1>Lines that breathe as you pass</h1>
+    <p>Thin horizontal contours across deep navy lift gently — just a few pixels — beneath the cursor, warming faintly coral at the crest.</p>
+    <a class="btn" href="#">See the approach</a>
+  </div>
+</section>
+
+<!-- 26 · SLOW TIDE -->
+<section class="section dark-s" id="tide">
+  <span class="label">26 · SLOW TIDE — the gradient leans toward you, slowly</span>
+  <canvas></canvas>
+  <div class="grain"></div>
+  <div class="content">
+    <span class="tag">What's next</span>
+    <h1>A tide that follows, in its own time</h1>
+    <p>The coral horizon glow leans toward the cursor over several seconds — closer to weather than animation.</p>
+    <a class="btn" href="#">Talk to us</a>
+  </div>
+</section>
+
+<script>
+(function () {
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  function mix(c1, c2, t) {
+    return [Math.round(lerp(c1[0], c2[0], t)), Math.round(lerp(c1[1], c2[1], t)), Math.round(lerp(c1[2], c2[2], t))];
+  }
+  function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+  var CORAL = [255, 111, 97];
+
+  function setupSection(id, onFrame) {
+    var s = document.getElementById(id);
+    var c = s.querySelector('canvas'), ctx = c ? c.getContext('2d') : null;
+    var st = { mx: 0, my: 0, hasMouse: false, t: 0, w: 0, h: 0, el: s };
+    function resize() {
+      st.w = s.clientWidth; st.h = s.clientHeight;
+      if (c) { c.width = st.w; c.height = st.h; }
+      if (!st.hasMouse) { st.mx = st.w / 2; st.my = st.h / 2; }
+    }
+    resize(); window.addEventListener('resize', resize);
+    s.addEventListener('pointermove', function (e) {
+      var r = s.getBoundingClientRect();
+      st.mx = e.clientX - r.left; st.my = e.clientY - r.top; st.hasMouse = true;
+    });
+    function frame() { st.t += 0.016; onFrame(ctx, st); requestAnimationFrame(frame); }
+    frame();
+  }
+
+  /* ---------- 23 WHISPER ---------- */
+  (function () {
+    var halo;
+    var x = 0, y = 0;
+    setupSection('whisper', function (ctx, st) {
+      if (!halo) { halo = st.el.querySelector('.halo'); x = st.w / 2; y = st.h / 2; }
+      x = lerp(x, st.mx, 0.015);       // very slow follow
+      y = lerp(y, st.my, 0.015);
+      halo.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    });
+  })();
+
+  /* ---------- 24 QUIET DOTS ---------- */
+  (function () {
+    var heat = null, cols = 0, rows = 0;
+    var GAP = 42;
+    setupSection('quietdots', function (ctx, st) {
+      var nc = Math.ceil(st.w / GAP) + 1, nr = Math.ceil(st.h / GAP) + 1;
+      if (!heat || nc !== cols || nr !== rows) {
+        cols = nc; rows = nr; heat = new Float32Array(cols * rows);
+      }
+      ctx.clearRect(0, 0, st.w, st.h);
+      var BASE = [178, 190, 205];
+      for (var j = 0; j < rows; j++) {
+        for (var i = 0; i < cols; i++) {
+          var x = i * GAP + GAP / 2, y = j * GAP + GAP / 2;
+          var dx = x - st.mx, dy = y - st.my;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          var target = Math.max(0, 1 - d / 180);
+          var k = j * cols + i;
+          // warm quickly-ish, cool very slowly
+          heat[k] = target > heat[k] ? lerp(heat[k], target, 0.06) : heat[k] * 0.985;
+          var v = heat[k];
+          var col = mix(BASE, CORAL, v);
+          ctx.fillStyle = rgba(col, 0.5 + v * 0.4);
+          ctx.beginPath(); ctx.arc(x, y, 1.6 + v * 0.9, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+    });
+  })();
+
+  /* ---------- 25 BREATHING LINES ---------- */
+  (function () {
+    var sx = 0, sy = 0, init = false;
+    setupSection('lines', function (ctx, st) {
+      if (!init) { sx = st.w / 2; sy = st.h / 2; init = true; }
+      sx = lerp(sx, st.mx, 0.02); sy = lerp(sy, st.my, 0.02);
+      ctx.clearRect(0, 0, st.w, st.h);
+      var LINES = 14, STEP = 24;
+      var top = st.h * 0.18, bottom = st.h * 0.88;
+      for (var li = 0; li < LINES; li++) {
+        var baseY = top + (bottom - top) * (li / (LINES - 1));
+        ctx.beginPath();
+        for (var x = -10; x <= st.w + 10; x += STEP) {
+          var dx = x - sx, dy = baseY - sy;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          var liftAmt = Math.exp(-(d * d) / (2 * 170 * 170)) * 9;   // max 9px
+          var sway = Math.sin(x * 0.004 + st.t * 0.25 + li * 0.6) * 2; // idle breath, max 2px
+          var y = baseY - liftAmt + sway;
+          if (x === -10) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        var lineNear = Math.max(0, 1 - Math.abs(baseY - sy) / 200);
+        var col = mix([88, 118, 158], CORAL, lineNear * 0.55);
+        ctx.strokeStyle = rgba(col, 0.16 + lineNear * 0.2);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    });
+  })();
+
+  /* ---------- 26 SLOW TIDE ---------- */
+  (function () {
+    var gx = 0.5, gy = 1.1;
+    setupSection('tide', function (ctx, st) {
+      var txn = st.mx / st.w;
+      var tyn = 0.85 + (st.my / st.h) * 0.3;  // stays low like a horizon
+      gx = lerp(gx, txn, 0.006);              // several seconds of lag
+      gy = lerp(gy, tyn, 0.006);
+      ctx.clearRect(0, 0, st.w, st.h);
+      var px = gx * st.w, py = gy * st.h;
+      var r = Math.max(st.w, st.h) * 0.9;
+      var g = ctx.createRadialGradient(px, py, 0, px, py, r);
+      g.addColorStop(0, 'rgba(255,138,107,0.34)');
+      g.addColorStop(0.35, 'rgba(255,111,97,0.16)');
+      g.addColorStop(1, 'rgba(255,111,97,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, st.w, st.h);
+      // faint arc echoing the glow position
+      ctx.beginPath();
+      ctx.moveTo(-20, st.h * 0.78);
+      ctx.quadraticCurveTo(px, st.h * 0.78 - 90, st.w + 20, st.h * 0.8);
+      ctx.strokeStyle = 'rgba(255,162,133,0.18)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+  })();
+})();
+</script>
+</body>
+</html>

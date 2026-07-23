@@ -1,0 +1,28 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="n14-navy" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2E5B9E" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#4A78B8" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#4A78B8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="n14-blue2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7FA3D1" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#7FA3D1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="n14-coral" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF8A6B" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FF8A6B" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="n14-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="720" fill="#F1F3F7"/>
+  <ellipse cx="880" cy="260" rx="620" ry="440" fill="url(#n14-navy)"/>
+  <ellipse cx="1240" cy="580" rx="560" ry="400" fill="url(#n14-blue2)"/>
+  <ellipse cx="160" cy="140" rx="480" ry="380" fill="url(#n14-coral)"/>
+  <ellipse cx="420" cy="700" rx="520" ry="340" fill="url(#n14-blue2)" opacity="0.7"/>
+  <rect width="1440" height="720" filter="url(#n14-grain)" opacity="0.14" style="mix-blend-mode:soft-light"/>
+  <rect width="1440" height="720" filter="url(#n14-grain)" opacity="0.05" style="mix-blend-mode:multiply"/>
+</svg>

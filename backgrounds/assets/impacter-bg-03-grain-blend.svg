@@ -1,0 +1,23 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="c3-blend" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0" stop-color="#0C2444"/>
+      <stop offset="0.35" stop-color="#33395F"/>
+      <stop offset="0.62" stop-color="#8A4E67"/>
+      <stop offset="0.85" stop-color="#E86E5F"/>
+      <stop offset="1" stop-color="#FF8A6B"/>
+    </linearGradient>
+    <radialGradient id="c3-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFB199" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#FFB199" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="c3-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="720" fill="url(#c3-blend)"/>
+  <ellipse cx="1100" cy="700" rx="700" ry="380" fill="url(#c3-glow)"/>
+  <rect width="1440" height="720" filter="url(#c3-grain)" opacity="0.16" style="mix-blend-mode:soft-light"/>
+  <rect width="1440" height="720" filter="url(#c3-grain)" opacity="0.06" style="mix-blend-mode:overlay"/>
+</svg>

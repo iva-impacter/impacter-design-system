@@ -1,0 +1,45 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="l12-base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14304F"/>
+      <stop offset="1" stop-color="#0A1F3C"/>
+    </linearGradient>
+    <radialGradient id="l12-vign" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.55" stop-color="#050F20" stop-opacity="0"/>
+      <stop offset="1" stop-color="#050F20" stop-opacity="0.4"/>
+    </radialGradient>
+    <radialGradient id="l12-spark" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFB199" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#FF6F61" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#FF6F61" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="l12-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <g id="l12-pipes" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M -60 120 H 280 Q 340 120 340 180 V 400 Q 340 460 400 460 H 620"/>
+      <path d="M 220 -60 V 20 Q 220 80 160 80 H -60"/>
+      <path d="M 500 -60 V 120 Q 500 180 560 180 H 780 Q 840 180 840 240 V 340"/>
+      <path d="M 840 340 Q 840 400 900 400 H 1120 Q 1180 400 1180 460 V 640"/>
+      <path d="M 1180 640 Q 1180 700 1240 700 H 1500"/>
+      <path d="M 1020 -60 V 60 Q 1020 120 1080 120 H 1320 Q 1380 120 1380 180 V 260"/>
+      <path d="M 1380 260 Q 1380 320 1440 320 H 1500"/>
+      <path d="M -60 600 H 120 Q 180 600 180 660 V 780"/>
+      <path d="M 400 780 V 660 Q 400 600 460 600 H 660 Q 720 600 720 540 V 480"/>
+      <path d="M 620 460 Q 680 460 680 520 V 780" />
+      <path d="M 1500 500 H 1360 Q 1300 500 1300 440 V 300"/>
+    </g>
+  </defs>
+  <rect width="1440" height="720" fill="url(#l12-base)"/>
+  <use href="#l12-pipes" stroke="#040D1C" stroke-width="46" transform="translate(0 5)" opacity="0.6"/>
+  <use href="#l12-pipes" stroke="#2C5488" stroke-width="46" transform="translate(0 -4)" opacity="0.9"/>
+  <use href="#l12-pipes" stroke="#102844" stroke-width="46"/>
+  <ellipse cx="340" cy="180" rx="65" ry="65" fill="url(#l12-spark)"/>
+  <ellipse cx="840" cy="240" rx="55" ry="55" fill="url(#l12-spark)" opacity="0.85"/>
+  <ellipse cx="1180" cy="460" rx="60" ry="60" fill="url(#l12-spark)" opacity="0.75"/>
+  <ellipse cx="680" cy="560" rx="48" ry="48" fill="url(#l12-spark)" opacity="0.6"/>
+  <ellipse cx="1380" cy="200" rx="45" ry="45" fill="url(#l12-spark)" opacity="0.5"/>
+  <rect width="1440" height="720" fill="url(#l12-vign)"/>
+  <rect width="1440" height="720" filter="url(#l12-grain)" opacity="0.08" style="mix-blend-mode:overlay"/>
+</svg>

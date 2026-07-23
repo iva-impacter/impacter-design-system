@@ -1,0 +1,33 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="a1-base" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#0E2A4E"/>
+      <stop offset="0.55" stop-color="#081A33"/>
+      <stop offset="1" stop-color="#050F20"/>
+    </linearGradient>
+    <radialGradient id="a1-coral" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF6F61" stop-opacity="0.85"/>
+      <stop offset="0.45" stop-color="#FF6F61" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FF6F61" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="a1-peach" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFB199" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#FFB199" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="a1-blue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2E5B9E" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#2E5B9E" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="a1-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="720" fill="url(#a1-base)"/>
+  <ellipse cx="1180" cy="760" rx="820" ry="520" fill="url(#a1-coral)"/>
+  <ellipse cx="360" cy="820" rx="700" ry="420" fill="url(#a1-peach)"/>
+  <ellipse cx="220" cy="80" rx="640" ry="440" fill="url(#a1-blue)"/>
+  <path d="M-40 560 C 380 430, 900 640, 1480 420" stroke="#FF8A73" stroke-opacity="0.35" stroke-width="1.5" fill="none"/>
+  <path d="M-40 620 C 400 490, 920 700, 1480 480" stroke="#FF8A73" stroke-opacity="0.18" stroke-width="1.5" fill="none"/>
+  <rect width="1440" height="720" filter="url(#a1-grain)" opacity="0.07" style="mix-blend-mode:overlay"/>
+</svg>

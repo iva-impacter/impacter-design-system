@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="f6-base" cx="0.5" cy="1.15" r="1.1">
+      <stop offset="0" stop-color="#16355C"/>
+      <stop offset="0.6" stop-color="#0A1F3C"/>
+      <stop offset="1" stop-color="#060F20"/>
+    </radialGradient>
+    <radialGradient id="f6-sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF8A6B" stop-opacity="0.9"/>
+      <stop offset="0.4" stop-color="#FF6F61" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#FF6F61" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="f6-arc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF6F61" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#FFA285"/>
+      <stop offset="1" stop-color="#FF6F61" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="f6-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="720" fill="url(#f6-base)"/>
+  <ellipse cx="720" cy="880" rx="1000" ry="480" fill="url(#f6-sun)"/>
+  <path d="M-100 600 Q 720 400 1540 600" stroke="url(#f6-arc)" stroke-width="2.5" fill="none"/>
+  <path d="M-100 650 Q 720 460 1540 650" stroke="url(#f6-arc)" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <g fill="#FFD9CC">
+    <circle cx="220" cy="170" r="2" opacity="0.5"/>
+    <circle cx="480" cy="90" r="1.5" opacity="0.35"/>
+    <circle cx="820" cy="140" r="2" opacity="0.4"/>
+    <circle cx="1120" cy="80" r="1.5" opacity="0.5"/>
+    <circle cx="1310" cy="210" r="2" opacity="0.35"/>
+    <circle cx="660" cy="250" r="1.5" opacity="0.3"/>
+  </g>
+  <rect width="1440" height="720" filter="url(#f6-grain)" opacity="0.08" style="mix-blend-mode:overlay"/>
+</svg>

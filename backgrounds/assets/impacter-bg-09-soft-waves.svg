@@ -1,0 +1,31 @@
+<svg viewBox="0 0 1440 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="i9-base" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#FF8A6B"/>
+      <stop offset="0.6" stop-color="#F2604C"/>
+      <stop offset="1" stop-color="#E04A38"/>
+    </linearGradient>
+    <linearGradient id="i9-w1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB199" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#FFB199" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="i9-w2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FF9B7E" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#FF9B7E" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="i9-w3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0E2A4E" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#0E2A4E" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="i9-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="720" fill="url(#i9-base)"/>
+  <path d="M -60 560 C 240 420, 520 600, 800 500 C 1080 400, 1280 520, 1500 440 V 780 H -60 Z" fill="url(#i9-w3)"/>
+  <path d="M -60 600 C 260 480, 540 660, 820 560 C 1100 460, 1300 580, 1500 500 V 780 H -60 Z" fill="url(#i9-w2)"/>
+  <path d="M -60 660 C 280 540, 560 700, 840 620 C 1120 540, 1320 640, 1500 570 V 780 H -60 Z" fill="url(#i9-w1)"/>
+  <path d="M -60 200 C 300 320, 640 140, 980 240 C 1220 310, 1380 240, 1500 280" stroke="#FFD9CC" stroke-opacity="0.35" stroke-width="1.5" fill="none"/>
+  <rect width="1440" height="720" filter="url(#i9-grain)" opacity="0.10" style="mix-blend-mode:soft-light"/>
+</svg>
