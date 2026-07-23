@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impacter Pathway — Depth Backgrounds</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #FBF7F2; }
+  .section {
+    position: relative; height: 100vh; min-height: 600px;
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .section canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .content { position: relative; z-index: 5; max-width: 760px; padding: 0 32px; pointer-events: none; }
+  .content a { pointer-events: auto; }
+  .tag {
+    display: inline-block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    padding: 7px 16px; border-radius: 100px; margin-bottom: 22px; font-weight: 600;
+  }
+  h1 { font-size: clamp(34px, 4.6vw, 58px); font-weight: 600; letter-spacing: -.02em; line-height: 1.12; margin-bottom: 18px; }
+  p { font-size: 17px; line-height: 1.6; max-width: 560px; margin: 0 auto 30px; }
+  .btn { display: inline-block; padding: 13px 28px; border-radius: 100px; font-size: 15px; font-weight: 600; text-decoration: none; }
+  .label {
+    position: absolute; top: 20px; left: 24px; z-index: 6;
+    font-size: 12px; font-weight: 600; letter-spacing: .08em;
+    padding: 6px 14px; border-radius: 6px;
+    background: rgba(0,0,0,.5); color: #fff; backdrop-filter: blur(4px);
+  }
+  .grain {
+    position: absolute; inset: 0; z-index: 4; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply; opacity: .035;
+  }
+  .light-s h1 { color: #0E2A4E; } .light-s p { color: #3B4A61; }
+  .light-s .tag { background: rgba(255,111,97,.1); color: #E85744; border: 1px solid rgba(255,111,97,.3); }
+  .light-s .btn { background: #0E2A4E; color: #FDF9F5; }
+  .dark-s h1 { color: #FDF9F5; } .dark-s p { color: #D5DFEC; }
+  .dark-s .tag { background: rgba(255,111,97,.12); color: #FFA895; border: 1px solid rgba(255,111,97,.3); }
+  .dark-s .btn { background: #FF6F61; color: #FFF6F1; }
+  .dark-s .grain { mix-blend-mode: overlay; opacity: .05; }
+
+  /* ---- 28 GLASS LAYERS ---- */
+  #glass {
+    background:
+      radial-gradient(ellipse at 18% 20%, rgba(255,122,92,.16) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 78%, rgba(255,177,153,.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 78% 12%, rgba(31,62,102,.08) 0%, transparent 50%),
+      #FBF7F2;
+  }
+  #glass .pane {
+    position: absolute; border-radius: 28px; will-change: transform;
+    background: rgba(255,255,255,.32);
+    border: 1px solid rgba(255,255,255,.65);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 60px rgba(14,42,78,.10);
+  }
+  #glass .p1 { width: 34vw; height: 46vh; left: 6%;  top: 12%;  transform: rotate(-9deg); }
+  #glass .p2 { width: 26vw; height: 34vh; right: 8%; top: 20%;  transform: rotate(7deg);
+    background: rgba(255,255,255,.22); box-shadow: 0 16px 40px rgba(14,42,78,.07); }
+  #glass .p3 { width: 30vw; height: 30vh; right: 20%; bottom: 6%; transform: rotate(-4deg);
+    background: rgba(255,241,235,.4); }
+  #glass .p4 { width: 16vw; height: 20vh; left: 20%; bottom: 14%; transform: rotate(12deg);
+    background: rgba(255,255,255,.18); box-shadow: 0 10px 28px rgba(14,42,78,.06); }
+
+  /* ---- 30 PAPER RIDGES ---- */
+  #ridges { background: linear-gradient(180deg, #FBF7F2 0%, #F6EEE6 100%); }
+  #ridges .ridge { position: absolute; left: -4%; width: 108%; bottom: 0; will-change: transform; }
+  #ridges .ridge svg { display: block; width: 100%; height: auto;
+    filter: drop-shadow(0 -14px 18px rgba(14,42,78,.10)); }
+
+  /* ---- 29 / 31 dark bases ---- */
+  #bokeh { background: radial-gradient(ellipse at 50% 110%, #14304F 0%, #0A1F3C 55%, #060F20 100%); }
+  #floorgrid { background: linear-gradient(180deg, #0B2140 0%, #081A33 58%, #060F20 100%); }
+  #floorgrid .horizon {
+    position: absolute; left: 50%; top: 56%; transform: translate(-50%,-50%);
+    width: 70vw; height: 26vh; pointer-events: none;
+    background: radial-gradient(ellipse, rgba(255,111,97,.16) 0%, transparent 65%);
+  }
+</style>
+</head>
+<body>
+<a href="index.html" style="position:fixed;top:20px;right:24px;z-index:99;font-family:Helvetica Neue,Arial,sans-serif;font-size:13px;font-weight:600;text-decoration:none;padding:8px 18px;border-radius:100px;background:rgba(0,0,0,.55);color:#fff;backdrop-filter:blur(4px)">&larr; All collections</a>
+
+<!-- 28 · GLASS LAYERS -->
+<section class="section light-s" id="glass">
+  <span class="label">28 · GLASS LAYERS — frosted panes drifting at depths <a href="view.html?id=bg-28" style="margin-left:10px;color:#FF8A73;font-weight:700">&lt;/&gt; Get code</a></span>
+  <div class="pane p1"></div>
+  <div class="pane p2"></div>
+  <div class="pane p4"></div>
+  <div class="pane p3"></div>
+  <div class="grain"></div>
+  <div class="content">
+    <span class="tag">Impacter Pathway</span>
+    <h1>Depth you can almost touch</h1>
+    <p>Frosted glass panes hover over the color washes, each drifting a few pixels at its own depth. Shadows and blur do the 3D work — nothing rushes.</p>
+    <a class="btn" href="#">Get started</a>
+  </div>
+</section>
+
+<!-- 29 · BOKEH DEPTH -->
+<section class="section dark-s" id="bokeh">
+  <span class="label">29 · BOKEH — out-of-focus lights, camera-lens depth <a href="view.html?id=bg-29" style="margin-left:10px;color:#FF8A73;font-weight:700">&lt;/&gt; Get code</a></span>
+  <canvas></canvas>
+  <div class="grain"></div>
+  <div class="content">
+    <span class="tag">Our story</span>
+    <h1>Focus on what's in front</h1>
+    <p>Coral and blue lights hang out of focus at different distances, like a lens held on the foreground. They drift slowly and lean a few pixels with the cursor.</p>
+    <a class="btn" href="#">Learn more</a>
+  </div>
+</section>
+
+<!-- 30 · PAPER RIDGES -->
+<section class="section light-s" id="ridges">
+  <span class="label">30 · PAPER RIDGES — layered hills with atmospheric depth <a href="view.html?id=bg-30" style="margin-left:10px;color:#FF8A73;font-weight:700">&lt;/&gt; Get code</a></span>
+  <div class="ridge" data-depth="0.15" style="bottom:24vh; opacity:.5">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:26vh">
+      <path d="M0 120 C 260 60, 500 150, 760 100 C 1020 50, 1240 130, 1440 90 L 1440 200 L 0 200 Z" fill="#C9D4E4"/>
+    </svg>
+  </div>
+  <div class="ridge" data-depth="0.35" style="bottom:14vh; opacity:.7">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:28vh">
+      <path d="M0 100 C 300 160, 560 60, 840 120 C 1100 170, 1300 80, 1440 110 L 1440 200 L 0 200 Z" fill="#9FB3CD"/>
+    </svg>
+  </div>
+  <div class="ridge" data-depth="0.6" style="bottom:5vh">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:30vh">
+      <path d="M0 130 C 240 70, 520 160, 800 90 C 1060 30, 1280 140, 1440 100 L 1440 200 L 0 200 Z" fill="#5F7A9E"/>
+    </svg>
+  </div>
+  <div class="ridge" data-depth="1" style="bottom:-2vh">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style="height:30vh">
+      <path d="M0 110 C 320 170, 620 60, 920 130 C 1160 180, 1340 90, 1440 120 L 1440 200 L 0 200 Z" fill="#FF8A6B"/>
+      <path d="M0 110 C 320 170, 620 60, 920 130 C 1160 180, 1340 90, 1440 120 L 1440 200 L 0 200 Z" fill="#0E2A4E" opacity="0.35"/>
+    </svg>
+  </div>
+  <div class="grain"></div>
+  <div class="content" style="transform:translateY(-8vh)">
+    <span class="tag">The pathway</span>
+    <h1>Ridge after ridge, closer and warmer</h1>
+    <p>Cut-paper hills fade from hazy blue to navy-coral up front — classic atmospheric depth. Each layer shifts a few pixels as the cursor moves.</p>
+    <a class="btn" href="#">See the journey</a>
+  </div>
+</section>
+
+<!-- 31 · FLOOR GRID -->
+<section class="section dark-s" id="floorgrid">
+  <span class="label">31 · FLOOR — a faint perspective floor, barely there <a href="view.html?id=bg-31" style="margin-left:10px;color:#FF8A73;font-weight:700">&lt;/&gt; Get code</a></span>
+  <div class="horizon"></div>
+  <canvas></canvas>
+  <div class="grain"></div>
+  <div class="content" style="transform:translateY(-6vh)">
+    <span class="tag">What's ahead</span>
+    <h1>A floor that recedes to the horizon</h1>
+    <p>A whisper-faint perspective grid glides toward you and its vanishing point eases after the cursor — the room feels deep, not busy.</p>
+    <a class="btn" href="#">Talk to us</a>
+  </div>
+</section>
+
+<script>
+(function () {
+  var lerp = function (a, b, t) { return a + (b - a) * t; };
+  function mix(c1, c2, t) {
+    return [Math.round(lerp(c1[0], c2[0], t)), Math.round(lerp(c1[1], c2[1], t)), Math.round(lerp(c1[2], c2[2], t))];
+  }
+  function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+  function setupSection(id, onFrame) {
+    var s = document.getElementById(id);
+    var c = s.querySelector('canvas'), ctx = c ? c.getContext('2d') : null;
+    var st = { mx: 0.5, my: 0.5, t: 0, w: 0, h: 0, el: s };
+    function resize() {
+      st.w = s.clientWidth; st.h = s.clientHeight;
+      if (c) { c.width = st.w; c.height = st.h; }
+    }
+    resize(); window.addEventListener('resize', resize);
+    s.addEventListener('pointermove', function (e) {
+      var r = s.getBoundingClientRect();
+      st.mx = (e.clientX - r.left) / r.width; st.my = (e.clientY - r.top) / r.height;
+    });
+    function frame() { st.t += 0.016; onFrame(ctx, st); requestAnimationFrame(frame); }
+    frame();
+  }
+
+  /* ---------- 28 GLASS LAYERS ---------- */
+  (function () {
+    var panes, sx = 0.5, sy = 0.5;
+    var depths = { p1: 0.5, p2: 0.9, p3: 1, p4: 0.7 };
+    setupSection('glass', function (ctx, st) {
+      if (!panes) panes = st.el.querySelectorAll('.pane');
+      sx = lerp(sx, st.mx, 0.025); sy = lerp(sy, st.my, 0.025);
+      for (var i = 0; i < panes.length; i++) {
+        var p = panes[i];
+        var cls = p.className.match(/p\d/)[0];
+        var d = depths[cls] || 0.5;
+        var idle = Math.sin(st.t * 0.35 + i * 1.7) * 3;                 // gentle float
+        var ox = (sx - 0.5) * -18 * d, oy = (sy - 0.5) * -12 * d + idle;
+        var rot = p.classList.contains('p1') ? -9 : p.classList.contains('p2') ? 7 : p.classList.contains('p3') ? -4 : 12;
+        p.style.transform = 'translate(' + ox + 'px,' + oy + 'px) rotate(' + rot + 'deg)';
+      }
+    });
+  })();
+
+  /* ---------- 29 BOKEH DEPTH ---------- */
+  (function () {
+    var lights = [];
+    var palette = [[255, 111, 97], [255, 177, 153], [74, 120, 184], [255, 201, 176], [46, 91, 158]];
+    for (var i = 0; i < 16; i++) {
+      lights.push({
+        x: Math.random(), y: Math.random() * 0.9,
+        depth: 0.15 + Math.random() * 0.85,        // 1 = near (bigger, softer)
+        col: palette[i % palette.length],
+        ph: Math.random() * 6.28,
+        sp: 0.05 + Math.random() * 0.08
+      });
+    }
+    var sx = 0.5, sy = 0.5;
+    setupSection('bokeh', function (ctx, st) {
+      sx = lerp(sx, st.mx, 0.02); sy = lerp(sy, st.my, 0.02);
+      ctx.clearRect(0, 0, st.w, st.h);
+      for (var i = 0; i < lights.length; i++) {
+        var L = lights[i];
+        var px = (L.x + Math.sin(st.t * L.sp + L.ph) * 0.02) * st.w + (sx - 0.5) * -24 * L.depth;
+        var py = (L.y + Math.cos(st.t * L.sp * 0.8 + L.ph) * 0.015) * st.h + (sy - 0.5) * -16 * L.depth;
+        var r = (18 + L.depth * 120) * Math.min(st.w, 1400) / 1400;
+        var soft = 0.25 + L.depth * 0.45;           // near = softer edge
+        var a = 0.05 + (1 - L.depth) * 0.10 + 0.03 * Math.sin(st.t * 0.4 + L.ph);
+        var g = ctx.createRadialGradient(px, py, 0, px, py, r);
+        g.addColorStop(0, rgba(L.col, a));
+        g.addColorStop(1 - soft, rgba(L.col, a * 0.75));
+        g.addColorStop(1, rgba(L.col, 0));
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2); ctx.fill();
+      }
+    });
+  })();
+
+  /* ---------- 30 PAPER RIDGES ---------- */
+  (function () {
+    var layers, sx = 0.5, sy = 0.5;
+    setupSection('ridges', function (ctx, st) {
+      if (!layers) layers = st.el.querySelectorAll('.ridge');
+      sx = lerp(sx, st.mx, 0.025); sy = lerp(sy, st.my, 0.025);
+      for (var i = 0; i < layers.length; i++) {
+        var d = parseFloat(layers[i].getAttribute('data-depth'));
+        var idle = Math.sin(st.t * 0.3 + i * 1.2) * 2;
+        var ox = (sx - 0.5) * -14 * d;
+        var oy = (sy - 0.5) * -10 * d + idle;
+        layers[i].style.transform = 'translate(' + ox + 'px,' + oy + 'px)';
+      }
+    });
+  })();
+
+  /* ---------- 31 FLOOR GRID ---------- */
+  (function () {
+    var svx = 0.5, off = 0;
+    setupSection('floorgrid', function (ctx, st) {
+      svx = lerp(svx, st.mx, 0.015);
+      off = (off + 0.0012) % 1;
+      ctx.clearRect(0, 0, st.w, st.h);
+      var horizon = st.h * 0.56;
+      var vpx = st.w / 2 + (svx - 0.5) * 90;
+      var ROWS = 13;
+      // receding horizontal lines, drifting slowly toward the viewer
+      for (var i = 0; i < ROWS; i++) {
+        var z = ((i + off * 1) % ROWS) / ROWS;      // 0 far, 1 near
+        var y = horizon + Math.pow(z, 2.1) * (st.h - horizon);
+        var a = 0.02 + z * 0.10;
+        var warm = Math.max(0, z - 0.55) * 0.8;
+        var col = mix([110, 140, 182], [255, 111, 97], warm);
+        ctx.strokeStyle = rgba(col, a);
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(st.w, y); ctx.stroke();
+      }
+      // converging verticals
+      for (var k = -9; k <= 9; k++) {
+        var bx = vpx + k * st.w * 0.11;
+        var tx = vpx + k * st.w * 0.011;
+        var cen = 1 - Math.min(1, Math.abs(k) / 9);
+        ctx.strokeStyle = rgba(mix([110, 140, 182], [255, 130, 108], cen * 0.35), 0.05 + cen * 0.04);
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(tx, horizon + 2); ctx.lineTo(bx, st.h); ctx.stroke();
+      }
+    });
+  })();
+})();
+</script>
+</body>
+</html>
