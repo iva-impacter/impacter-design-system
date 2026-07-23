@@ -19,7 +19,7 @@ python3 -m http.server 8000
 - `backgrounds/interactive.html` — cursor-following spotlight, liquid metaballs, 3D dot terrain, tilt parallax
 - `backgrounds/geometric.html` — magnetic dots, tile wall, isometric cubes, shape constellation
 - `backgrounds/subtle.html` — low-motion variants: whisper glow, quiet dots, breathing lines, slow tide
-- `backgrounds/studio.html` — trend-inspired: silk ribbons, halo rings, light beams, halftone sphere, orbits
+- `backgrounds/studio.html` — trend-inspired: silk ribbons, halo rings, light beams, halftone sphere, orbits (dark + light versions of each)
 - `backgrounds/depth.html` — subtle 3D depth: frosted glass layers, lens bokeh, paper ridges, perspective floor
 - `backgrounds/voice-hero.html` — voice-intelligence hero with speech-like signal bars
 - `backgrounds/assets/` — 15 standalone SVG backgrounds (scalable, drop-in)
