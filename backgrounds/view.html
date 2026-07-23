@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background — Impacter Pathway</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #FBF7F2; color: #14273F; }
+  a { text-decoration: none; }
+  header {
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    padding: 22px 32px; background: #0E2A4E;
+  }
+  header a.back {
+    font-size: 13px; font-weight: 600; color: #fff;
+    padding: 8px 18px; border-radius: 100px; background: rgba(255,255,255,.12);
+  }
+  header h1 { font-size: 20px; font-weight: 600; color: #FDF9F5; letter-spacing: -.01em; }
+  header .badge {
+    font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: #FFF6F1; background: #FF6F61; padding: 5px 12px; border-radius: 100px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 34px 32px 80px; }
+  .preview {
+    width: 100%; height: 62vh; min-height: 420px; border: 0; border-radius: 18px;
+    box-shadow: 0 6px 26px rgba(14,42,78,.14); background: #fff; display: block;
+  }
+  img.preview { object-fit: cover; }
+  .hint { font-size: 13px; color: #8B94A1; margin: 12px 2px 0; }
+  .code-head { display: flex; align-items: center; justify-content: space-between; margin: 38px 0 12px; }
+  .code-head h2 { font-size: 18px; font-weight: 600; }
+  button.copy {
+    font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer;
+    color: #FFF6F1; background: #FF6F61; border: 0; padding: 10px 22px; border-radius: 100px;
+  }
+  button.copy.done { background: #0E2A4E; }
+  pre {
+    background: #0B1F3A; color: #DCE6F2; border-radius: 16px; padding: 24px;
+    overflow: auto; max-height: 70vh; font-size: 13px; line-height: 1.55;
+  }
+  code { font-family: 'SF Mono', Menlo, Consolas, monospace; white-space: pre; }
+  .error { padding: 60px 0; text-align: center; color: #8B94A1; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="index.html">&larr; Library</a>
+  <h1 id="title">Loading…</h1>
+  <span class="badge" id="badge"></span>
+</header>
+
+<div class="wrap">
+  <div id="preview-slot"></div>
+  <p class="hint" id="hint"></p>
+  <div class="code-head">
+    <h2>Source code</h2>
+    <button class="copy" id="copy">Copy code</button>
+  </div>
+  <pre><code id="code"></code></pre>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var id = new URLSearchParams(location.search).get('id');
+  var entry = window.BG_DATA && window.BG_DATA[id];
+  var titleEl = document.getElementById('title');
+  if (!entry) {
+    titleEl.textContent = 'Background not found';
+    document.querySelector('.wrap').innerHTML = '<p class="error">Unknown background id. <a href="index.html" style="color:#FF6F61">Back to the library</a>.</p>';
+    return;
+  }
+  document.title = entry.title + ' — Impacter Pathway';
+  titleEl.textContent = entry.title;
+  document.getElementById('badge').textContent = entry.type === 'svg' ? 'Static SVG' : 'Interactive';
+
+  var slot = document.getElementById('preview-slot');
+  if (entry.type === 'svg') {
+    var img = document.createElement('img');
+    img.className = 'preview';
+    img.src = entry.asset;
+    img.alt = entry.title;
+    slot.appendChild(img);
+    document.getElementById('hint').textContent = 'Scalable SVG — use as a background-image or inline. Grain filters render in browsers (not in Figma imports).';
+  } else {
+    var frame = document.createElement('iframe');
+    frame.className = 'preview';
+    frame.setAttribute('sandbox', 'allow-scripts');
+    frame.srcdoc = entry.code;
+    slot.appendChild(frame);
+    document.getElementById('hint').textContent = 'Live preview — move your mouse inside it. The code below is a complete standalone page; the section block can be lifted into any site.';
+  }
+
+  document.getElementById('code').textContent = entry.code;
+
+  var btn = document.getElementById('copy');
+  btn.addEventListener('click', function () {
+    function done() {
+      btn.textContent = 'Copied!';
+      btn.classList.add('done');
+      setTimeout(function () { btn.textContent = 'Copy code'; btn.classList.remove('done'); }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(entry.code).then(done);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = entry.code; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      done();
+    }
+  });
+})();
+</script>
+</body>
+</html>
